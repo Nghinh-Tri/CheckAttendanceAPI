@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using Newtonsoft.Json.Serialization;
 
 using CheckAttendanceAPI.Contexts;
 using CheckAttendanceAPI.Repositories;
@@ -31,7 +33,8 @@ namespace CheckAttendanceAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Context>(opt => opt.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(s => s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IUsersRepository, UsersService>();
         }
 

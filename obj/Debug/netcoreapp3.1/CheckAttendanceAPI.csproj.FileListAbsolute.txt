@@ -56,3 +56,7 @@ E:\.NetCore\Check Attenndance\CheckAttendanceAPI\CheckAttendanceAPI\bin\Debug\ne
 E:\.NetCore\Check Attenndance\CheckAttendanceAPI\CheckAttendanceAPI\obj\Debug\netcoreapp3.1\CheckAttendanceAPI.csproj.CoreCompileInputs.cache
 E:\.NetCore\Check Attenndance\CheckAttendanceAPI\CheckAttendanceAPI\obj\Debug\netcoreapp3.1\CheckAttendanceAPI.MvcApplicationPartsAssemblyInfo.cache
 E:\.NetCore\Check Attenndance\CheckAttendanceAPI\CheckAttendanceAPI\bin\Debug\netcoreapp3.1\check-present-09a4fe185cec.json
+E:\.NetCore\Check Attenndance\CheckAttendanceAPI\CheckAttendanceAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+E:\.NetCore\Check Attenndance\CheckAttendanceAPI\CheckAttendanceAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+E:\.NetCore\Check Attenndance\CheckAttendanceAPI\CheckAttendanceAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+E:\.NetCore\Check Attenndance\CheckAttendanceAPI\CheckAttendanceAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
