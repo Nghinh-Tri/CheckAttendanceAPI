@@ -6,5 +6,7 @@ namespace CheckAttendanceAPI.Repositories
     public interface IUsersRepository
     {
         IEnumerable<Users> GetAllUsers();
+
+        Users GetUserById(string id);
     }
 }

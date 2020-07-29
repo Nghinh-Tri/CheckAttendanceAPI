@@ -8,11 +8,16 @@ namespace CheckAttendanceAPI.Service
 {
     public class UsersService : IUsersRepository
     {
-        private readonly UsersContext context;
-        public UsersService(UsersContext context){this.context = context;}
+        private readonly Context context;
+        public UsersService(Context context){this.context = context;}
         public IEnumerable<Users> GetAllUsers()
         {
             return context.Users.ToList();
+        }
+
+        public Users GetUserById(string id)
+        {
+            return context.Users.FirstOrDefault(p => p.UserId == id);
         }
     }
 }

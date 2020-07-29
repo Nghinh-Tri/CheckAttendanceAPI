@@ -30,7 +30,7 @@ namespace CheckAttendanceAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<UsersContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
+            services.AddDbContext<Context>(opt => opt.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
             services.AddControllers();
             services.AddScoped<IUsersRepository, UsersService>();
         }
