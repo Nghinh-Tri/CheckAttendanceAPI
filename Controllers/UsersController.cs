@@ -57,7 +57,7 @@ namespace CheckAttendanceAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeleteUsers(string id)
+        public ActionResult DeleteUser(string id)
         {
             var isExist = repository.GetUserById(id);
             if (isExist != null)
@@ -68,5 +68,21 @@ namespace CheckAttendanceAPI.Controllers
             }
             return NotFound();
         }
+
+        [HttpPut("{id}")]
+        public ActionResult UpdateUser(string id, [FromBody] UserUpdateDTO userUpdate) { 
+            var isExist = repository.GetUserById(id);
+            if (isExist != null)
+            {
+                mapper.Map(userUpdate, isExist);
+                repository.UpdateUser(isExist);
+                bool resutl = repository.SaveChanges();
+                if (resutl)
+                {
+                    return Ok();
+                }
+            }
+            return NotFound();
+         }
     }
 }

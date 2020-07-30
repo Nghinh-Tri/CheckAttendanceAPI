@@ -9,6 +9,7 @@ namespace Mapper
         public Mapper()
         {
             CreateMap<UserCreatorDTO,Users>();
+            CreateMap<UserUpdateDTO,Users>();
         }
     }
 }

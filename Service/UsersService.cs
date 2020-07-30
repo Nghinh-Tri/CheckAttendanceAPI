@@ -40,5 +40,7 @@ namespace CheckAttendanceAPI.Service
         {
             return context.SaveChanges() >= 0;
         }
+
+        public void UpdateUser(Users user){}
     }
 }

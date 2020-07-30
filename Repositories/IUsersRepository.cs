@@ -12,6 +12,8 @@ namespace CheckAttendanceAPI.Repositories
         void CreateUser(Users users);
 
         void DeleteUser(Users user);
+        
+        void UpdateUser(Users user);
 
         bool SaveChanges();
     }
