@@ -12,8 +12,9 @@ namespace CheckAttendanceAPI.Service
         private readonly Context context;
         public UsersService(Context context) { this.context = context; }
 
-        public void CreateUser(Users users)
+        public void Create(object obj)
         {
+            var users = (Users) obj;
             if (users == null)
             {
                 throw new ArgumentException(nameof(users));
@@ -21,19 +22,14 @@ namespace CheckAttendanceAPI.Service
             context.Users.Add(users);
         }
 
-        public void DeleteUser(Users user)
+        public void Delete(object obj)
         {
-            context.Users.Remove(user);
+            context.Users.Remove((Users)obj);
         }
 
-        public IEnumerable<Users> GetAllUsers()
+        public object GetById(object id)
         {
-            return context.Users.ToList();
-        }
-
-        public Users GetUserById(string id)
-        {
-            return context.Users.FirstOrDefault(p => p.UserId == id);
+            return context.Users.FirstOrDefault(p => p.UserId == (string)id);
         }
 
         public bool SaveChanges()
@@ -41,6 +37,11 @@ namespace CheckAttendanceAPI.Service
             return context.SaveChanges() >= 0;
         }
 
-        public void UpdateUser(Users user){}
+        public void Update(object obj){}
+
+        IEnumerable<object> IRepository.GetAll()
+        {
+            return context.Users.ToList();
+        }
     }
 }

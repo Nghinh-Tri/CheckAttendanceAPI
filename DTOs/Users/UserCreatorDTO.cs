@@ -1,4 +1,4 @@
-namespace CheckAttendanceAPI.DTOs
+namespace CheckAttendanceAPI.DTOs.Users
 {
     public class UserCreatorDTO
     {

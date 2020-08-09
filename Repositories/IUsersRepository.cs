@@ -1,20 +1,6 @@
-using System.Collections.Generic;
-using CheckAttendanceAPI.Models;
+using CheckAttendanceAPI.Repositories;
 
 namespace CheckAttendanceAPI.Repositories
 {
-    public interface IUsersRepository
-    {
-        IEnumerable<Users> GetAllUsers();
-
-        Users GetUserById(string id);
-
-        void CreateUser(Users users);
-
-        void DeleteUser(Users user);
-        
-        void UpdateUser(Users user);
-
-        bool SaveChanges();
-    }
+    public interface IUsersRepository : IRepository{}
 }

@@ -1,13 +1,15 @@
 using AutoMapper;
 using CheckAttendanceAPI.Models;
-using CheckAttendanceAPI.DTOs;
+using CheckAttendanceAPI.DTOs.Users;
+using CheckAttendanceAPI.DTOs.Adminstrators;
 
-namespace Mapper
+namespace CheckAttendanceAPI.Mapper
 {
     public class Mapper : Profile
     {
         public Mapper()
         {
+            CreateMap<AdministratorsDTO,Administrators>();
             CreateMap<UserCreatorDTO,Users>();
             CreateMap<UserUpdateDTO,Users>();
         }

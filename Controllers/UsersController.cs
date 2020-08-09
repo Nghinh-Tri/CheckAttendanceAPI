@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using AutoMapper;
-using System.Text;
-
+using Microsoft.AspNetCore.Authorization;
 using CheckAttendanceAPI.Repositories;
 using CheckAttendanceAPI.Models;
-using CheckAttendanceAPI.DTOs;
+using CheckAttendanceAPI.DTOs.Users;
 
 namespace CheckAttendanceAPI.Controllers
 {
+    [Authorize]
     [Route("/api/users")]
     public class UsersController : ControllerBase
     {
@@ -24,14 +24,14 @@ namespace CheckAttendanceAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Users>> GetAllUsers()
         {
-            var result = repository.GetAllUsers();
+            var result = repository.GetAll();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public ActionResult<Users> GetUserById(string id)
         {
-            var result = repository.GetUserById(id);
+            var result = repository.GetById(id);
             if (result != null)
             {
                 return Ok(result);
@@ -43,10 +43,10 @@ namespace CheckAttendanceAPI.Controllers
         public ActionResult CreateUsers([FromBody] UserCreatorDTO users)
         {
             Users model = mapper.Map<Users>(users);
-            var isExist = repository.GetUserById(model.UserId);
+            var isExist = repository.GetById(model.UserId);
             if (isExist == null)
             {
-                repository.CreateUser(model);
+                repository.Create(model);
                 bool resutl = repository.SaveChanges();
                 if (resutl)
                 {
@@ -59,10 +59,10 @@ namespace CheckAttendanceAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteUser(string id)
         {
-            var isExist = repository.GetUserById(id);
+            var isExist = repository.GetById(id);
             if (isExist != null)
             {
-                repository.DeleteUser(isExist);
+                repository.Delete(isExist);
                 repository.SaveChanges();
                 return Ok();
             }
@@ -71,11 +71,11 @@ namespace CheckAttendanceAPI.Controllers
 
         [HttpPut("{id}")]
         public ActionResult UpdateUser(string id, [FromBody] UserUpdateDTO userUpdate) { 
-            var isExist = repository.GetUserById(id);
+            var isExist = repository.GetById(id);
             if (isExist != null)
             {
                 mapper.Map(userUpdate, isExist);
-                repository.UpdateUser(isExist);
+                repository.Update(isExist);
                 bool resutl = repository.SaveChanges();
                 if (resutl)
                 {
