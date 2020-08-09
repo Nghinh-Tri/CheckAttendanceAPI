@@ -15,29 +15,32 @@ namespace CheckAttendanceAPI.Service
         private readonly AppSettings key;
         public AdministratorsService(Context context, IOptions<AppSettings> setting)
         {
-            this.context = context; 
+            this.context = context;
             this.key = setting.Value;
         }
 
         public string Authenticate(Administrators administrators)
         {
-            Administrators account = context.Administrators.Find(administrators.UserId);
-            if (account.Password == administrators.Password)
+            Administrators result = context.Administrators.Find(administrators.UserId);
+            if (result != null)
             {
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var tokenKey = Encoding.ASCII.GetBytes(this.key.MyKey);
-                var tokenDescriptor = new SecurityTokenDescriptor
+                if (result.Password == administrators.Password)
                 {
-                    Subject = new ClaimsIdentity(new Claim[] {
-                        new Claim(ClaimTypes.Name, account.UserId)
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var tokenKey = Encoding.ASCII.GetBytes(this.key.MyKey);
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = new ClaimsIdentity(new Claim[] {
+                        new Claim(ClaimTypes.Name, result.UserId)
                     }),
-                    Expires = DateTime.UtcNow.AddHours(1),
-                    SigningCredentials = new SigningCredentials(
-                                                new SymmetricSecurityKey(tokenKey), 
-                                                    SecurityAlgorithms.HmacSha256Signature)
-                };
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                return tokenHandler.WriteToken(token);
+                        Expires = DateTime.UtcNow.AddHours(1),
+                        SigningCredentials = new SigningCredentials(
+                                                    new SymmetricSecurityKey(tokenKey),
+                                                        SecurityAlgorithms.HmacSha256Signature)
+                    };
+                    var token = tokenHandler.CreateToken(tokenDescriptor);
+                    return tokenHandler.WriteToken(token);
+                }
             }
             return null;
         }
