@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\.NetCore\\Check Attenndance\\CheckAttendanceAPI\\CheckAttendanceAPI\\CheckAttendanceAPI.csproj": {}
+    "E:\\.NetCore\\Check Attenndance\\CheckAttendanceAPI\\CheckAttendanceAPI.csproj": {}
   },
   "projects": {
-    "E:\\.NetCore\\Check Attenndance\\CheckAttendanceAPI\\CheckAttendanceAPI\\CheckAttendanceAPI.csproj": {
+    "E:\\.NetCore\\Check Attenndance\\CheckAttendanceAPI\\CheckAttendanceAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\.NetCore\\Check Attenndance\\CheckAttendanceAPI\\CheckAttendanceAPI\\CheckAttendanceAPI.csproj",
+        "projectUniqueName": "E:\\.NetCore\\Check Attenndance\\CheckAttendanceAPI\\CheckAttendanceAPI.csproj",
         "projectName": "CheckAttendanceAPI",
-        "projectPath": "E:\\.NetCore\\Check Attenndance\\CheckAttendanceAPI\\CheckAttendanceAPI\\CheckAttendanceAPI.csproj",
+        "projectPath": "E:\\.NetCore\\Check Attenndance\\CheckAttendanceAPI\\CheckAttendanceAPI.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "E:\\.NetCore\\Check Attenndance\\CheckAttendanceAPI\\CheckAttendanceAPI\\obj\\",
+        "outputPath": "E:\\.NetCore\\Check Attenndance\\CheckAttendanceAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

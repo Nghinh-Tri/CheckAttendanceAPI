@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VI1/BVg8jA7yexQixSklOw3+DbIo6KVof4xYT8k1SowUo/02rjjjMsQ8+aHqYPie8QP3PpF2g1phuckLdWLO9A==",
+  "dgSpecHash": "miu5JF7DDjgK+vKscsSP+fr1ifYE68ieU6ucCpKyIM6WcBGHjHXzYpNdAFr0L1m404nwkS+gYod5kNxBIlKdIQ==",
   "success": true,
-  "projectFilePath": "E:\\.NetCore\\Check Attenndance\\CheckAttendanceAPI\\CheckAttendanceAPI\\CheckAttendanceAPI.csproj",
+  "projectFilePath": "E:\\.NetCore\\Check Attenndance\\CheckAttendanceAPI\\CheckAttendanceAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.0.1\\automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",
