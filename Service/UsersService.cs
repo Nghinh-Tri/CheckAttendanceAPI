@@ -12,36 +12,39 @@ namespace CheckAttendanceAPI.Service
         private readonly Context context;
         public UsersService(Context context) { this.context = context; }
 
-        public void Create(object obj)
+        //Get All
+        List<Users> IUsersRepository.GetAll()
         {
-            var users = (Users) obj;
-            if (users == null)
-            {
-                throw new ArgumentException(nameof(users));
-            }
-            context.Users.Add(users);
+            return context.Users.ToList();
         }
 
-        public void Delete(object obj)
+        //Get By Id
+        public Users GetById(string id)
         {
-            context.Users.Remove((Users)obj);
+            return context.Users.FirstOrDefault(p => p.UserId == id);
         }
 
-        public object GetById(object id)
-        {
-            return context.Users.FirstOrDefault(p => p.UserId == (string)id);
-        }
-
+        //Save Change
         public bool SaveChanges()
         {
             return context.SaveChanges() >= 0;
         }
 
-        public void Update(object obj){}
-
-        IEnumerable<object> IRepository.GetAll()
+        //Insert
+        public void Insert(Users user)
         {
-            return context.Users.ToList();
+            context.Users.Add(user);
         }
+
+        //Delete
+        public void Delete(Users user)
+        {
+            context.Users.Remove(user);
+        }
+
+        //Update  
+        public void Update(Users user) { }
+
+
     }
 }

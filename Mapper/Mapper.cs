@@ -1,7 +1,6 @@
 using AutoMapper;
 using CheckAttendanceAPI.Models;
-using CheckAttendanceAPI.DTOs.Users;
-using CheckAttendanceAPI.DTOs.Adminstrators;
+using CheckAttendanceAPI.DTOs;
 
 namespace CheckAttendanceAPI.Mapper
 {
@@ -10,8 +9,13 @@ namespace CheckAttendanceAPI.Mapper
         public Mapper()
         {
             CreateMap<AdministratorsDTO,Administrators>();
+            CreateMap<AdministratorsStatusDTO,Administrators>();
             CreateMap<UserCreatorDTO,Users>();
             CreateMap<UserUpdateDTO,Users>();
+            CreateMap<Users,UserGetDTO>();
+            CreateMap<SlotInsertDTO,Slots>();
+            CreateMap<SlotUpdateDTO,Slots>();
+            CreateMap<Slots,SlotDTO>();
         }
     }
 }

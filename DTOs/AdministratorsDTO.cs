@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace CheckAttendanceAPI.DTOs.Adminstrators
+namespace CheckAttendanceAPI.DTOs
 {
     public class AdministratorsDTO
     {
@@ -8,5 +8,10 @@ namespace CheckAttendanceAPI.DTOs.Adminstrators
         public string UserId { get; set; }
         [MaxLength(50)]
         public string Password { get; set; }
+    }
+
+    public class AdministratorsStatusDTO
+    {
+        public bool Status { get; set; }
     }
 }

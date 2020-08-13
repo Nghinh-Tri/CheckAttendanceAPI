@@ -4,12 +4,12 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using CheckAttendanceAPI.Repositories;
 using CheckAttendanceAPI.Models;
-using CheckAttendanceAPI.DTOs.Users;
+using CheckAttendanceAPI.DTOs;
 
 namespace CheckAttendanceAPI.Controllers
 {
     [Authorize]
-    [Route("/api/users")]
+    [Route("api/users")]
     public class UsersController : ControllerBase
     {
         private readonly IUsersRepository repository;
@@ -28,30 +28,29 @@ namespace CheckAttendanceAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetUserById")]
         public ActionResult<Users> GetUserById(string id)
         {
             var result = repository.GetById(id);
+
             if (result != null)
             {
-                return Ok(result);
+                return Ok(mapper.Map<UserGetDTO>(result));
             }
             return NotFound();
         }
 
-        [HttpPost]
+        [HttpPost(Name = "CreateUsers")]
         public ActionResult CreateUsers([FromBody] UserCreatorDTO users)
         {
             Users model = mapper.Map<Users>(users);
             var isExist = repository.GetById(model.UserId);
             if (isExist == null)
             {
-                repository.Create(model);
+                repository.Insert(model);
                 bool resutl = repository.SaveChanges();
                 if (resutl)
-                {
                     return Ok();
-                }
             }
             return NotFound();
         }

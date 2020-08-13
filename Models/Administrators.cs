@@ -9,5 +9,6 @@ namespace CheckAttendanceAPI.Models
         public string UserId { get; set; }
         [MaxLength(50)]
         public string Password { get; set; }
+        public bool Status { get; set; }
     }
 }

@@ -18,7 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using CheckAttendanceAPI.Contexts;
 using CheckAttendanceAPI.Repositories;
 using CheckAttendanceAPI.Service;
-using CheckAttendanceAPI.Models;
+using CheckAttendanceAPI.Data;
 using System.Text;
 
 namespace CheckAttendanceAPI
@@ -39,7 +39,6 @@ namespace CheckAttendanceAPI
             services.AddControllers().AddNewtonsoftJson(s => s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddScoped<IUsersRepository, UsersService>();
 
             //jwt config
             var appSettingsSection = Configuration.GetSection("AppSetting");
@@ -63,8 +62,11 @@ namespace CheckAttendanceAPI
                     ValidateAudience = false
                 };
             });
-            services.AddScoped<IAuthentication, AdministratorsService>();
 
+            //add scope service
+            services.AddScoped<IAuthentication, AdministratorsService>();
+            services.AddScoped<IUsersRepository, UsersService>();
+            services.AddScoped<ISlotsRepository, SlotsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
