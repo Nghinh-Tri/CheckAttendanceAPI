@@ -1,22 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using System;
-using System.Collections.Generic;
 using AutoMapper;
-
+using System.Collections.Generic;
+using System;
+using Microsoft.AspNetCore.Authorization;
 using CheckAttendanceAPI.Repositories;
 using CheckAttendanceAPI.Models;
 using CheckAttendanceAPI.DTOs;
 
 namespace Controllers
 {
-    [Authorize]
-    [Route("api/slots")]
-    public class SlotsController : ControllerBase
+    // [Authorize]
+    [Route("api/majors")]
+    public class MajorsController : ControllerBase
     {
-        private readonly ISlotsRepository repository;
+        private readonly IMajorsRepository repository;
         private readonly IMapper mapper;
-        public SlotsController(ISlotsRepository repository, IMapper mapper)
+
+        public MajorsController(IMajorsRepository repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;
@@ -24,12 +24,13 @@ namespace Controllers
 
         //Get All
         [HttpGet]
-        public ActionResult<Dictionary<string, IEnumerable<Slots>>> GetAllSlot(){
+        public ActionResult<Dictionary<string, List<Majors>>> GetAll()
+        {
             try
             {
-                var slots = repository.GetAll();
-                Dictionary<string, IEnumerable<Slots>> result = new Dictionary<string, IEnumerable<Slots>>();
-                result.Add("Slots", slots);
+                var list = repository.GetAll();
+                Dictionary<string, List<Majors>> result = new Dictionary<string, List<Majors>>();
+                result.Add("Majors", list);
                 return Ok(result);
             }
             catch (System.Exception msg)
@@ -38,13 +39,16 @@ namespace Controllers
             }
         }
 
-        //Get All
+        //Get By Id
         [HttpGet("{id}")]
-        public ActionResult<SlotDTO> GetSlotById(int id){
+        public ActionResult<MajorsReadDTO> GetById(string id)
+        {
             try
             {
-                var slots =  repository.GetById(id);                
-                return Ok(mapper.Map<SlotDTO>(slots));
+                var result = repository.GetById(id);
+                if (result != null)
+                    return Ok(mapper.Map<MajorsReadDTO>(result));
+                return NotFound();
             }
             catch (System.Exception msg)
             {
@@ -52,13 +56,17 @@ namespace Controllers
             }
         }
 
-        //insert
+        //Insert
         [HttpPost]
-        public IActionResult Insert([FromBody] SlotInsertDTO dto){
+        public IActionResult Insert([FromBody] MajorsCreateDTO dto)
+        {
             try
             {
-                var model = mapper.Map<Slots>(dto);
-                if (model != null){
+                var model = mapper.Map<Majors>(dto);
+                if (model != null)
+                {
+                    model.Status = true;
+                    model.DateCreate = DateTime.Now;
                     repository.Insert(model);
                     var result = repository.SaveChanges();
                     if (result)
@@ -74,11 +82,13 @@ namespace Controllers
 
         //Update
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] SlotUpdateDTO dto){
+        public IActionResult Update(string id, [FromBody] MajorsUpdateDTO dto)
+        {
             try
             {
                 var isExist = repository.GetById(id);
-                if (isExist != null){
+                if (isExist != null)
+                {
                     mapper.Map(dto, isExist);
                     repository.Update(isExist);
                     var result = repository.SaveChanges();

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace CheckAttendanceAPI.Models
 {
@@ -16,6 +17,6 @@ namespace CheckAttendanceAPI.Models
         public int Certification { get; set; }
         [MaxLength(10)]
         public string Status { get; set; }
-        public string DateCreate { get; set; }
+        public DateTime DateCreate { get; set; }
     }
 }

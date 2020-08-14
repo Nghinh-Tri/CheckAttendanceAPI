@@ -10,11 +10,11 @@ namespace CheckAttendanceAPI.Repositories
         List<Users> GetAll();
         Users GetById(string id);
 
-        void Delete(Users obj);
+        void Delete(Users users);
 
-        void Update(Users obj);
+        void Update(Users users);
 
-        void Insert(Users obj);
+        void Insert(Users users);
 
         bool SaveChanges();
     }
@@ -31,13 +31,32 @@ namespace CheckAttendanceAPI.Repositories
     public interface ISlotsRepository
     {
         List<Slots> GetAll();
-        void Insert(Slots slots) { }
+        void Insert(Slots slots);
         Slots GetById(int id);
 
-        void Delete(Slots obj);
+        void Delete(Slots slots);
 
-        void Update(Slots obj);
+        void Update(Slots slots);
 
+        bool SaveChanges();
+    }
+
+    public interface IRoomsRepository
+    {
+        List<Rooms> GetAll();
+        void Insert(Rooms rooms);
+        Rooms GetById(int id);
+        void Delete(Rooms rooms);
+        bool SaveChanges();
+    }
+
+    public interface IMajorsRepository
+    {
+        List<Majors> GetAll();
+        void Insert(Majors majors);
+        void Update(Majors majors);
+        Majors GetById(string id);
+        void Delete(Majors rooms);
         bool SaveChanges();
     }
 }

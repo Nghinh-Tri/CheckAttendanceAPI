@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace CheckAttendanceAPI.Models
 {
@@ -22,7 +23,7 @@ namespace CheckAttendanceAPI.Models
         public string Sex { get; set; }
         [MaxLength(10)]
         public string Role { get; set; }
-        public string DateCreate { get; set; }
+        public DateTime DateCreate { get; set; }
         public string Image { get; set; }
     }
 }

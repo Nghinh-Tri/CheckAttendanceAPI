@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace CheckAttendanceAPI.Models
 {
@@ -12,6 +13,6 @@ namespace CheckAttendanceAPI.Models
         public float Grade { get; set; }
         [MaxLength(10)]
         public string Status { get; set; }
-        public string DateUpdate { get; set; }
+        public DateTime DateUpdate { get; set; }
     }
 }
