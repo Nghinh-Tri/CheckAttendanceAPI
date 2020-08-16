@@ -21,25 +21,41 @@ namespace CheckAttendanceAPI.Controllers
             this.mapper = mapper;
         }
 
+        //Get all
         [HttpGet]
         public ActionResult<IEnumerable<Users>> GetAllUsers()
         {
-            var result = repository.GetAll();
-            return Ok(result);
+            try
+            {
+                var list = repository.GetAll();
+                Dictionary<string, IEnumerable<Users>> result = new Dictionary<string, IEnumerable<Users>>();
+                result.Add("Users", list);
+                return Ok(result);
+            }
+            catch (System.Exception msg)
+            {
+                return NotFound(msg);
+            }
         }
 
+        //Get by Id
         [HttpGet("{id}", Name = "GetUserById")]
         public ActionResult<Users> GetUserById(string id)
         {
-            var result = repository.GetById(id);
-
-            if (result != null)
+            try
             {
-                return Ok(mapper.Map<UserGetDTO>(result));
+                var result = repository.GetById(id);
+                if (result != null)
+                    return Ok(mapper.Map<UserGetDTO>(result));
+                return NotFound();
             }
-            return NotFound();
+            catch (System.Exception msg)
+            {
+                return NotFound(msg);
+            }
         }
 
+        //Insert
         [HttpPost(Name = "CreateUsers")]
         public ActionResult CreateUsers([FromBody] UserCreatorDTO users)
         {
@@ -55,9 +71,11 @@ namespace CheckAttendanceAPI.Controllers
             return NotFound();
         }
 
+        //Delete
         [HttpDelete("{id}")]
         public ActionResult DeleteUser(string id)
         {
+
             var isExist = repository.GetById(id);
             if (isExist != null)
             {
@@ -68,20 +86,27 @@ namespace CheckAttendanceAPI.Controllers
             return NotFound();
         }
 
+        //Update
         [HttpPut("{id}")]
-        public ActionResult UpdateUser(string id, [FromBody] UserUpdateDTO userUpdate) { 
-            var isExist = repository.GetById(id);
-            if (isExist != null)
+        public ActionResult UpdateUser(string id, [FromBody] UserUpdateDTO userUpdate)
+        {
+            try
             {
-                mapper.Map(userUpdate, isExist);
-                repository.Update(isExist);
-                bool resutl = repository.SaveChanges();
-                if (resutl)
+                var isExist = repository.GetById(id);
+                if (isExist != null)
                 {
-                    return Ok();
+                    mapper.Map(userUpdate, isExist);
+                    repository.Update(isExist);
+                    bool resutl = repository.SaveChanges();
+                    if (resutl)
+                        return Ok();
                 }
+                return NotFound();
             }
-            return NotFound();
-         }
+            catch (System.Exception msg)
+            {
+                return NotFound(msg);
+            }
+        }
     }
 }

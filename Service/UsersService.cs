@@ -7,10 +7,9 @@ using CheckAttendanceAPI.Contexts;
 
 namespace CheckAttendanceAPI.Service
 {
-    public class UsersService : IUsersRepository
+    public class UsersService : BaseService, IUsersRepository
     {
-        private readonly Context context;
-        public UsersService(Context context) { this.context = context; }
+        public UsersService(Context context) : base(context) { }
 
         //Get All
         List<Users> IUsersRepository.GetAll()
@@ -22,12 +21,6 @@ namespace CheckAttendanceAPI.Service
         public Users GetById(string id)
         {
             return context.Users.FirstOrDefault(p => p.UserId == id);
-        }
-
-        //Save Change
-        public bool SaveChanges()
-        {
-            return context.SaveChanges() >= 0;
         }
 
         //Insert
@@ -44,7 +37,5 @@ namespace CheckAttendanceAPI.Service
 
         //Update  
         public void Update(Users user) { }
-
-
     }
 }

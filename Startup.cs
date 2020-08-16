@@ -64,11 +64,14 @@ namespace CheckAttendanceAPI
             });
 
             //add scope service
+            services.AddScoped<IRepository, BaseService>();
             services.AddScoped<IAuthentication, AdministratorsService>();
             services.AddScoped<IUsersRepository, UsersService>();
             services.AddScoped<ISlotsRepository, SlotsService>();
             services.AddScoped<IRoomsRepository, RoomsService>();
             services.AddScoped<IMajorsRepository, MajorsService>();
+            services.AddScoped<IStudentsRepository, StudentsService>();
+            services.AddScoped<ILecturersRepository, LecturersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

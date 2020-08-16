@@ -6,10 +6,9 @@ using CheckAttendanceAPI.Contexts;
 
 namespace CheckAttendanceAPI.Service
 {
-    public class MajorsService : IMajorsRepository
+    public class MajorsService : BaseService, IMajorsRepository
     {
-        private readonly Context context;
-        public MajorsService(Context context) { this.context = context; }
+        public MajorsService(Context context) : base(context) {}
         public void Delete(Majors rooms)
         {
             context.Majors.Remove(rooms);
@@ -28,11 +27,6 @@ namespace CheckAttendanceAPI.Service
         public void Insert(Majors majors)
         {
             context.Majors.Add(majors);
-        }
-
-        public bool SaveChanges()
-        {
-            return context.SaveChanges() >= 0;
         }
 
         public void Update(Majors majors) { }

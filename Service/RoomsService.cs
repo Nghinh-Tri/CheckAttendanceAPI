@@ -7,10 +7,9 @@ using CheckAttendanceAPI.Repositories;
 
 namespace CheckAttendanceAPI.Service
 {
-    public class RoomsService : IRoomsRepository
+    public class RoomsService : BaseService, IRoomsRepository
     {
-        private readonly Context context;
-        public RoomsService(Context context) => this.context = context;
+        public RoomsService(Context context) : base(context) {}
 
         public void Delete(Rooms rooms)
         {
@@ -30,11 +29,6 @@ namespace CheckAttendanceAPI.Service
         public void Insert(Rooms rooms)
         {
             context.Rooms.Add(rooms);
-        }
-
-        public bool SaveChanges()
-        {
-            return context.SaveChanges() > 0;
         }
     }
 }

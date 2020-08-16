@@ -14,15 +14,11 @@ using System.Collections.Generic;
 
 namespace CheckAttendanceAPI.Service
 {
-    public class AdministratorsService : IAuthentication
+    public class AdministratorsService : BaseService, IAuthentication
     {
-        private readonly Context context;
         private readonly AppSettings key;
-        public AdministratorsService(Context context, IOptions<AppSettings> setting)
-        {
-            this.context = context;
-            this.key = setting.Value;
-        }
+
+        public AdministratorsService(Context context, IOptions<AppSettings> setting) : base(context) => key = setting.Value;
 
         //Check Login
         public string Authenticate(Administrators administrators)
@@ -55,12 +51,6 @@ namespace CheckAttendanceAPI.Service
         public void Insert(Administrators administrators)
         {
             context.Administrators.Add(administrators);
-        }
-
-        //Save change
-        public bool SaveChanges()
-        {
-            return context.SaveChanges() >= 0;
         }
 
         //Update

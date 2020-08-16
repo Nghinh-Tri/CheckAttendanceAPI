@@ -8,13 +8,9 @@ using CheckAttendanceAPI.Data;
 
 namespace CheckAttendanceAPI.Service
 {
-    public class SlotsService : ISlotsRepository
+    public class SlotsService : BaseService, ISlotsRepository
     {
-        private readonly Context context;
-        public SlotsService(Context context)
-        {
-            this.context = context;
-        }
+        public SlotsService(Context context) : base(context) { }
 
         //Get All
         List<Slots> ISlotsRepository.GetAll()
@@ -38,12 +34,6 @@ namespace CheckAttendanceAPI.Service
         void ISlotsRepository.Insert(Slots slot)
         {
             context.Slots.Add(slot);
-        }
-
-        //Save change
-        public bool SaveChanges()
-        {
-            return context.SaveChanges() >= 0;
         }
 
         //Update
