@@ -9,7 +9,7 @@ using CheckAttendanceAPI.Models;
 
 namespace Controllers
 {
-    // [Authorize]
+    [Authorize]
     [Route("api/lecturers")]
     public class LecturersController : ControllerBase
     {
@@ -38,7 +38,7 @@ namespace Controllers
             }
         }
 
-        //Get All
+        //Get by Id
         [HttpGet("{id}")]
         public ActionResult<LecturersDTO> GetSlotById(string id)
         {

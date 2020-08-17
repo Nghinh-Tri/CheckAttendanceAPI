@@ -31,6 +31,18 @@ namespace CheckAttendanceAPI.Mapper
 
             CreateMap<LecturersDTO, Lecturers>();
             CreateMap<Lecturers, LecturersDTO>();
+
+            CreateMap<CertificationsDTO, Certifications>();
+            CreateMap<Certifications, CertificationsDTO>();
+
+            CreateMap<Classes, ClassesReadDTO>();
+            CreateMap<ClassesWriteDTO, Classes>();
+
+            CreateMap<SchedulesWriteDTO, Schedules>();
+            CreateMap<Schedules, SchedulesReadDTO>();
+
+            CreateMap<Schedules, SubjectsDTO>();
+            CreateMap<SubjectsDTO, Schedules>();
         }
     }
 }

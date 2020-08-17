@@ -16,8 +16,22 @@ namespace CheckAttendanceAPI.Repositories
         void Update(Administrators administrators);
         Administrators GetById(string id);
     }
-    public interface ICertificationsRepository : IRepository { }
-    public interface IClassesRepository : IRepository { }
+    public interface ICertificationsRepository : IRepository
+    {
+        List<Certifications> GetAll();
+        void Insert(Certifications certifications);
+        void Update(Certifications certifications);
+        Certifications GetById(string userId);
+        void Delete(Certifications certifications);
+    }
+    public interface IClassesRepository : IRepository
+    {
+        List<Classes> GetAll();
+        void Insert(Classes certifications);
+        void Update(Classes certifications);
+        Classes GetById(int id);
+        void Delete(Classes certifications);
+    }
     public interface ILecturersRepository : IRepository
     {
         List<Lecturers> GetAll();
@@ -41,7 +55,13 @@ namespace CheckAttendanceAPI.Repositories
         Rooms GetById(int id);
         void Delete(Rooms rooms);
     }
-    public interface ISchedulesRepository: IRepository { }
+    public interface ISchedulesRepository : IRepository {
+        List<Schedules> GetAll();
+        void Insert(Schedules schedules);
+        void Update(Schedules schedules);
+        Schedules GetById(int id);
+        void Delete(Schedules schedules);
+     }
     public interface ISlotsRepository : IRepository
     {
         List<Slots> GetAll();
@@ -52,7 +72,7 @@ namespace CheckAttendanceAPI.Repositories
 
         void Update(Slots slots);
     }
-    public interface IStudentsRepository: IRepository
+    public interface IStudentsRepository : IRepository
     {
         List<Students> GetAll();
         void Insert(Students students);
@@ -60,8 +80,14 @@ namespace CheckAttendanceAPI.Repositories
         Students GetById(string id);
         void Delete(Students students);
     }
-    public interface ISubjectsRepository: IRepository { }
-    public interface IUsersRepository: IRepository
+    public interface ISubjectsRepository : IRepository { 
+        List<Subjects> GetAll();
+        void Insert(Subjects subjects);
+        void Update(Subjects subjects);
+        Subjects GetById(string id);
+        void Delete(Subjects subjects);
+    }
+    public interface IUsersRepository : IRepository
     {
         List<Users> GetAll();
         Users GetById(string id);
