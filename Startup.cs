@@ -34,7 +34,14 @@ namespace CheckAttendanceAPI
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        { 
+        {
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             services.AddDbContext<Context>(opt => opt.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
             services.AddControllers().AddNewtonsoftJson(s => s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -99,10 +106,7 @@ namespace CheckAttendanceAPI
             {
                 endpoints.MapControllers();
             });
-            app.UseCors(buider => {
-                buider.AllowAnyMethod();
-                buider.AllowAnyHeader();
-            });
+            app.UseCors("MyPolicy");
         }
     }
 }
