@@ -42,6 +42,8 @@ namespace CheckAttendanceAPI
                        .AllowAnyHeader();
             }));
 
+            services.AddMvc();
+
             services.AddDbContext<Context>(opt => opt.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
             services.AddControllers().AddNewtonsoftJson(s => s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
