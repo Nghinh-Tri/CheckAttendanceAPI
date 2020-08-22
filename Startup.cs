@@ -108,7 +108,8 @@ namespace CheckAttendanceAPI
             {
                 endpoints.MapControllers();
             });
-            app.UseCors("MyPolicy");
+            app.UseRouting();  
+            app.UseCors("MyPolicy"); 
         }
     }
 }
