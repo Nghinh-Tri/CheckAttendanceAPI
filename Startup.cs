@@ -99,6 +99,7 @@ namespace CheckAttendanceAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("MyPolicy"); 
 
             app.UseAuthentication();
 
@@ -108,8 +109,6 @@ namespace CheckAttendanceAPI
             {
                 endpoints.MapControllers();
             });
-            app.UseRouting();  
-            app.UseCors("MyPolicy"); 
         }
     }
 }
