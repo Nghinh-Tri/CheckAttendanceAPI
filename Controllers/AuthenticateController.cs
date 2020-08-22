@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using AutoMapper;
 
 using CheckAttendanceAPI.Repositories;
@@ -9,7 +8,6 @@ using CheckAttendanceAPI.DTOs;
 
 namespace CheckAttendanceAPI.Controllers
 {
-    [EnableCors("MyPolicy")]
     [Authorize]
     [Route("api/admin")]
     public class AuthenticateController : ControllerBase
